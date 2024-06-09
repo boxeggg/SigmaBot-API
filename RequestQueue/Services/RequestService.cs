@@ -12,11 +12,12 @@ namespace RequestQueue.Services
         public bool AddRequest(RequestModel request);
         public bool RemoveRequest();
         public int RequestsCount();
+        public bool ClearQueue();
     }
     public class RequestService : IRequestService
     {
         private  Queue<RequestModel>  SongQueue = new Queue<RequestModel>();
-        public RequestModel test = new RequestModel();
+        
         
         public Queue<RequestModel> GetAllRequest()
         {
@@ -62,6 +63,18 @@ namespace RequestQueue.Services
         public int RequestsCount() 
         { 
             return SongQueue.Count();
+        }
+        public bool ClearQueue()
+        {
+            try
+            {
+                SongQueue.Clear();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
         
     }

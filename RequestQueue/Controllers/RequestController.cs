@@ -42,6 +42,19 @@ namespace RequestQueue.Controllers
             }    
             
         }
+        [HttpDelete("clear")]
+        public IActionResult Clear()
+        {
+            if (_requestService.ClearQueue())
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Failed removing request");
+            }
+
+        }
         [HttpGet("count")]
         public IActionResult GetRequestCount()
         {
