@@ -64,6 +64,7 @@ namespace RequestQueue.Controllers
         [HttpPost("new")]
         public IActionResult AddRequest(RequestModel requestModel)
         {
+            requestModel.DateTime = DateTime.Now;
             if (_requestService.AddRequest(requestModel))
             {
                 return Ok();
