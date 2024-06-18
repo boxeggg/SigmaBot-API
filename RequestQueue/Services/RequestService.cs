@@ -10,6 +10,7 @@ namespace RequestQueue.Services
         public Queue<RequestModel> GetAllRequest();
         public RequestModel GetLastRequest();
         public bool AddRequest(RequestModel request);
+        public bool AddPlaylist(ICollection<RequestModel> playlist);
         public bool RemoveRequest();
         public int RequestsCount();
         public bool ClearQueue();
@@ -40,6 +41,22 @@ namespace RequestQueue.Services
             try
             {
                 SongQueue.Enqueue(request);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool AddPlaylist(ICollection<RequestModel> playlist)
+        {
+            try
+            {
+                foreach (var item in playlist)
+                {
+                    SongQueue.Enqueue(item);
+                }
 
                 return true;
             }
