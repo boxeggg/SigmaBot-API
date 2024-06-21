@@ -1,4 +1,5 @@
-﻿using RequestQueue.Models;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using RequestQueue.Models;
 
 namespace RequestQueue.Services
 {

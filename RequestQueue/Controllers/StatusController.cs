@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Azure;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using RequestQueue.Models;
 using RequestQueue.Services;
@@ -19,8 +21,10 @@ namespace RequestQueue.Controllers
         return Ok(status);
         }
         [HttpPatch]
-        public IActionResult UpdateStatus(StatusModel model) {
-            if(_statusService.UpdateStatus(model))
+        public  IActionResult UpdateStatus( [FromBody] JsonPatchDocument<StatusModel> model) {
+            var status = _statusService.GetStatus();
+            model.ApplyTo(status);
+            if(_statusService.UpdateStatus(status))
             {
                 return Ok();
             }
