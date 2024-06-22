@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.JsonPatch;
-using RequestQueue.Models;
+using SigmaBotAPI.Models;
 
-namespace RequestQueue.Services
+namespace SigmaBotAPI.Services
 {
     public interface IStatusService
     {
@@ -21,7 +21,7 @@ namespace RequestQueue.Services
             {
                 statusService = model;
                 return true;
-            } 
+            }
             catch (Exception ex)
             {
                 return false;

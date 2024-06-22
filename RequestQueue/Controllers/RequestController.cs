@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RequestQueue.Models;
-using RequestQueue.Services;
+using SigmaBotAPI.Models;
+using SigmaBotAPI.Services;
 
-namespace RequestQueue.Controllers
+namespace SigmaBotAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

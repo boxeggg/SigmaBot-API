@@ -1,9 +1,9 @@
 ﻿using Azure.Core;
-using RequestQueue.Models;
+using SigmaBotAPI.Models;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace RequestQueue.Services
+namespace SigmaBotAPI.Services
 {
     public interface IRequestService
     {
@@ -17,9 +17,9 @@ namespace RequestQueue.Services
     }
     public class RequestService : IRequestService
     {
-        private  Queue<RequestModel>  SongQueue = new Queue<RequestModel>();
-        
-        
+        private Queue<RequestModel> SongQueue = new Queue<RequestModel>();
+
+
         public Queue<RequestModel> GetAllRequest()
         {
 
@@ -31,7 +31,7 @@ namespace RequestQueue.Services
             {
                 return SongQueue.Peek();
             }
-            catch(Exception e) 
+            catch (Exception e)
             {
                 return null;
             }
@@ -65,7 +65,8 @@ namespace RequestQueue.Services
                 return false;
             }
         }
-        public bool RemoveRequest() {
+        public bool RemoveRequest()
+        {
             try
             {
                 SongQueue.Dequeue();
@@ -77,8 +78,8 @@ namespace RequestQueue.Services
             }
 
         }
-        public int RequestsCount() 
-        { 
+        public int RequestsCount()
+        {
             return SongQueue.Count();
         }
         public bool ClearQueue()
@@ -93,6 +94,6 @@ namespace RequestQueue.Services
                 return false;
             }
         }
-        
+
     }
 }
