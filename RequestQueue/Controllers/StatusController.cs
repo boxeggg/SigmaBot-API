@@ -33,5 +33,14 @@ namespace SigmaBotAPI.Controllers
             }
             return BadRequest();
         }
+        [HttpPut]
+        public IActionResult ResetStatus()
+        {
+            if (_statusService.ResetStatus())
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
     }
 }

@@ -12,7 +12,7 @@
             GuildId = "";
             LoopMode = LoopModes.None;
             OnVoiceChannel = false;
-            Volume = 50;
+            Volume = 100;
             SkipQueued = false;
         }
 
