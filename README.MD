@@ -1,6 +1,6 @@
 # SigmaBotAPI
 
-SigmaBotAPI is a RESTful API for managing the request queue and status of a [SigmaBot](https://github.com/boxeggg/SigmaBot).
+SigmaBotAPI is a self-host RESTful API for managing the request queue and status of a [SigmaBot](https://github.com/boxeggg/SigmaBot).
 
 ## Table of Contents
 - [Endpoints](#endpoints)
