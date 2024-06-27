@@ -19,7 +19,7 @@ namespace SigmaBotAPI.Controllers
         /// Retrieves all requests.
         /// </summary>
         /// <returns>A list of all requests.</returns>
-        [HttpGet("all")]
+        [HttpGet]
         public IActionResult GetAllRequests()
         {
             var requests = _requestService.GetAllRequest();
@@ -53,7 +53,7 @@ namespace SigmaBotAPI.Controllers
         {
             if (_requestService.RemoveRequest())
             {
-                return Ok();
+                return NoContent();
             }
             else
             {
@@ -70,7 +70,7 @@ namespace SigmaBotAPI.Controllers
         {
             if (_requestService.ClearQueue())
             {
-                return Ok();
+                return NoContent();
             }
             else
             {
@@ -117,6 +117,7 @@ namespace SigmaBotAPI.Controllers
                     Name = item.Name,
                     Url = item.Url,
                     User = item.User,
+                    Thumbnail_Url = item.Thumbnail_Url,
                     DateTime = DateTime.Now,
 
                 };
