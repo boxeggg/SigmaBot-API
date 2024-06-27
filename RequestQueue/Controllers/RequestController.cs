@@ -22,8 +22,14 @@ namespace SigmaBotAPI.Controllers
         [HttpGet]
         public IActionResult GetAllRequests()
         {
-            var requests = _requestService.GetAllRequest();
-            return Ok(requests);
+            try
+            {
+                var requests = _requestService.GetAllRequest();
+                return Ok(requests);
+            }
+            catch (Exception ex) { 
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -85,8 +91,15 @@ namespace SigmaBotAPI.Controllers
         [HttpGet("count")]
         public IActionResult GetRequestCount()
         {
-            int request = _requestService.RequestsCount();
-            return Ok(request);
+            try
+            {
+                int request = _requestService.RequestsCount();
+                return Ok(request);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -131,7 +144,7 @@ namespace SigmaBotAPI.Controllers
             }
             else
             {
-                return BadRequest("Failed to add new request");
+                return BadRequest("Failed to add new playlist");
             }
         }
 

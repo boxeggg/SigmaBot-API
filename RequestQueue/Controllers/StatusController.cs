@@ -1,6 +1,4 @@
-﻿using Azure;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
+﻿using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using SigmaBotAPI.Models;
 using SigmaBotAPI.Services;
@@ -19,8 +17,16 @@ namespace SigmaBotAPI.Controllers
         [HttpGet]
         public IActionResult GetStatus()
         {
-            var status = _statusService.GetStatus();
-            return Ok(status);
+            try
+            {
+                var status = _statusService.GetStatus();
+                return Ok(status);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error");
+            }
+
         }
         [HttpPatch]
         public IActionResult UpdateStatus([FromBody] JsonPatchDocument<StatusModel> model)
