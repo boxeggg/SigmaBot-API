@@ -8,6 +8,12 @@ SigmaBotAPI is a self-host RESTful API for managing the request queue and status
 - Database-less structure
 - Intended for **self-hosting** with a maximum of 1 bot instance
 
+## Running with Docker
+
+You can run this application using Docker image
+
+[SigmaBot API latest docker image](https://hub.docker.com/repository/docker/boxeggg/sigmabot_api_v1)
+
 ## Table of Contents
 - [Endpoints](#endpoints)
   - [RequestController](#requestcontroller)
