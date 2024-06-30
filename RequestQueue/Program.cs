@@ -17,12 +17,19 @@ builder.Services.AddSwaggerGen().AddSwaggerGenNewtonsoftSupport();
 
 
 
-
-
 var app = builder.Build();
+if (app.Environment.IsDevelopment())
+{
+    app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .AllowCredentials()
+    .SetIsOriginAllowed(origin => true));
+}
+
 app.UseSwagger();
 app.UseSwaggerUI();
-// app.UseHttpsRedirection();
+
 
 app.UseAuthorization();
 
