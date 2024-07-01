@@ -17,7 +17,7 @@ export class AppComponent {
     const router = this.injector.get(Router);
     this.service.getStatus().subscribe((data: Status) => {
       if (!data.onVoiceChannel) {
-        router.navigate(['error']);
+        router.navigate(['novoice']);
       }
     }
 

@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class ErrorService implements ErrorHandler {
   constructor(private injector: Injector, private ngZone: NgZone) { }
-  errorMessage: string = "SigmaBot is currently out of the voice channel"
-  problem: string = "/play on the voice channel"
+  errorMessage: string = ""
+  problem: string = ""
   handleError(error: any): Observable<never>{
     const router = this.injector.get(Router);
     if (error.error instanceof ErrorEvent) {

@@ -7,11 +7,13 @@ import { NgIf } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpErrorComponent } from './http-error/http-error.component';
 import { ErrorService } from './services/error.service';
+import { NotOnVoiceComponent } from './not-on-voice/not-on-voice.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HttpErrorComponent
+    HttpErrorComponent,
+    NotOnVoiceComponent
   ],
   imports: [
     NgIf,
