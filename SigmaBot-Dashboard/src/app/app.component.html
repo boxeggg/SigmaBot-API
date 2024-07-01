@@ -1,10 +1,4 @@
-<div *ngIf="onVoiceChannel; else elseBlock">
-  <h1>On voice channel</h1>
+<div>
+  <router-outlet></router-outlet>
 </div>
-<ng-template #elseBlock>
-  <div class="container d-flex align-items-center justify-content-center min-vh-100">
-    <div class="text-center">
-      <h1 class="display-4 fancy-font">The bot is not currently on the voice channel</h1>
-    </div>
-  </div>
-</ng-template>
+
