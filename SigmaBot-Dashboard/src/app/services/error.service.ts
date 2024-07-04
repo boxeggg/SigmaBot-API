@@ -21,6 +21,6 @@ export class ErrorService implements ErrorHandler {
       this.problem = error.message;
     }
     this.ngZone.run(() => router.navigate(['error']));
-    throw new Error(this.errorMessage);
+    throw new Error();
   }
 }

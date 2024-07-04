@@ -5,9 +5,9 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgIf } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpErrorComponent } from './http-error/http-error.component';
+import { HttpErrorComponent } from './errors/http-error/http-error.component';
 import { ErrorService } from './services/error.service';
-import { NotOnVoiceComponent } from './not-on-voice/not-on-voice.component';
+import { NotOnVoiceComponent } from './errors/not-on-voice/not-on-voice.component';
 
 @NgModule({
   declarations: [
