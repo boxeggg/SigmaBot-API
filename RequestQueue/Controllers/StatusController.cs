@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.JsonPatch;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using SigmaBotAPI.Data.Entities;
+using SigmaBotAPI.Models;
 using SigmaBotAPI.Services;
 
 namespace SigmaBotAPI.Controllers
@@ -10,16 +12,20 @@ namespace SigmaBotAPI.Controllers
     public class StatusController : ControllerBase
     {
         private readonly IStatusRepository _statusService;
-        public StatusController(IStatusRepository statusService)
+        private IMapper _mapper;
+
+        public StatusController(IStatusRepository statusService, IMapper mapper)
         {
+
             _statusService = statusService;
+            _mapper = mapper;
         }
         [HttpGet]
         public IActionResult GetStatus(string guildId)
         {
             try
             {
-                var status = _statusService.GetStatus(guildId);
+                var status = _mapper.Map<StatusModel>(_statusService.GetStatus(guildId));
                 return Ok(status);
             }
             catch (Exception ex)
@@ -46,6 +52,11 @@ namespace SigmaBotAPI.Controllers
         public IActionResult UpdateStatus([FromBody] JsonPatchDocument<StatusEntity> model, string guildId)
         {
             var status = _statusService.GetStatus(guildId);
+            if (status == null)
+            {
+                return NotFound();
+            }
+
             model.ApplyTo(status);
             if (_statusService.UpdateStatus(status))
             {

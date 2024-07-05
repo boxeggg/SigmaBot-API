@@ -61,7 +61,7 @@ namespace SigmaBotAPI.Services
                     statusToReset.LoopMode = LoopModes.None;
                     statusToReset.OnVoiceChannel = false;
                     statusToReset.Volume = 100;
-                statusToReset.SkipQueued = false;
+                    statusToReset.SkipQueued = false;
 
 
                 return _context.SaveChanges() > 0;

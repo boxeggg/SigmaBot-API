@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using SigmaBotAPI.Data.Entities;
+using SigmaBotAPI.Models;
 using SigmaBotAPI.Services;
 
 namespace SigmaBotAPI.Controllers
@@ -10,11 +12,14 @@ namespace SigmaBotAPI.Controllers
     {
         private readonly ISongRepository _requestService;
         private readonly IStatusRepository _statusRepository;
+        private readonly IMapper _mapper;
 
-        public RequestController(ISongRepository requestService, IStatusRepository statusRepository)
+
+        public RequestController(ISongRepository requestService, IStatusRepository statusRepository, IMapper mapper)
         {
             _requestService = requestService;
             _statusRepository = statusRepository;
+            _mapper = mapper;
 
         }
 
@@ -27,7 +32,7 @@ namespace SigmaBotAPI.Controllers
         {
             try
             {
-                var requests = _requestService.GetAllRequests(guildId);
+                var requests = _mapper.Map<List<SongModel>>(_requestService.GetAllRequests(guildId));
                 return Ok(requests);
             }
             catch (Exception ex) { 
@@ -42,7 +47,7 @@ namespace SigmaBotAPI.Controllers
         [HttpGet("last")]
         public IActionResult GetLastRequest(string guildId)
         {
-            var request = _requestService.GetLastRequest(guildId);
+            var request = _mapper.Map<SongModel>(_requestService.GetLastRequest(guildId));
             if (request != null)
             {
                 return Ok(request);
@@ -111,7 +116,7 @@ namespace SigmaBotAPI.Controllers
         /// <param name="requestModel">The request model to add.</param>
         /// <returns>Ok if successful, otherwise a Bad Request response.</returns>
         [HttpPost("new")]
-        public IActionResult AddRequest(SongEntity requestModel)
+        public IActionResult AddRequest([FromBody] SongModel requestModel)
         {
 
             var newSong = new SongEntity()
@@ -124,9 +129,6 @@ namespace SigmaBotAPI.Controllers
                 DateTime = DateTime.Now,
                 GuildId = requestModel.GuildId,
                 Status = _statusRepository.GetStatus(requestModel.GuildId)
-
-
-
             };
             if (_requestService.AddRequest(newSong))
             {
@@ -135,7 +137,7 @@ namespace SigmaBotAPI.Controllers
             else { return BadRequest("Failed adding new request"); };
         }
         [HttpPost("playlist")]
-        public IActionResult AddPlaylist(ICollection<SongEntity> playlist)
+        public IActionResult AddPlaylist([FromBody] ICollection<SongModel> playlist)
         {
             ICollection<SongEntity> newPlaylist = new List<SongEntity>();
 
@@ -144,11 +146,14 @@ namespace SigmaBotAPI.Controllers
 
                 var newItem = new SongEntity
                 {
+                    Id = item.Id,
                     Name = item.Name,
                     Url = item.Url,
                     User = item.User,
                     Thumbnail_Url = item.Thumbnail_Url,
                     DateTime = DateTime.Now,
+                    GuildId = item.GuildId,
+                    Status = _statusRepository.GetStatus(item.GuildId)
 
                 };
 
