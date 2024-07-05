@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using SigmaBotAPI.Data.Entities;
 using SigmaBotAPI.Models;
 using SigmaBotAPI.Services;
 
@@ -8,11 +10,17 @@ namespace SigmaBotAPI.Controllers
     [ApiController]
     public class RequestController : ControllerBase
     {
-        private readonly IRequestService _requestService;
+        private readonly ISongRepository _requestService;
+        private readonly IStatusRepository _statusRepository;
+        private readonly IMapper _mapper;
 
-        public RequestController(IRequestService requestService)
+
+        public RequestController(ISongRepository requestService, IStatusRepository statusRepository, IMapper mapper)
         {
             _requestService = requestService;
+            _statusRepository = statusRepository;
+            _mapper = mapper;
+
         }
 
         /// <summary>
@@ -20,11 +28,11 @@ namespace SigmaBotAPI.Controllers
         /// </summary>
         /// <returns>A list of all requests.</returns>
         [HttpGet]
-        public IActionResult GetAllRequests()
+        public IActionResult GetAllRequests(string guildId)
         {
             try
             {
-                var requests = _requestService.GetAllRequest();
+                var requests = _mapper.Map<List<SongModel>>(_requestService.GetAllRequests(guildId));
                 return Ok(requests);
             }
             catch (Exception ex) { 
@@ -37,9 +45,9 @@ namespace SigmaBotAPI.Controllers
         /// </summary>
         /// <returns>The last request if it exists, otherwise a Bad Request response.</returns>
         [HttpGet("last")]
-        public IActionResult GetLastRequest()
+        public IActionResult GetLastRequest(string guildId)
         {
-            var request = _requestService.GetLastRequest();
+            var request = _mapper.Map<SongModel>(_requestService.GetLastRequest(guildId));
             if (request != null)
             {
                 return Ok(request);
@@ -55,9 +63,9 @@ namespace SigmaBotAPI.Controllers
         /// </summary>
         /// <returns>Ok if successful, otherwise a Bad Request response.</returns>
         [HttpDelete("last")]
-        public IActionResult Delete()
+        public IActionResult Delete(string guildId)
         {
-            if (_requestService.RemoveRequest())
+            if (_requestService.RemoveLastRequest(guildId))
             {
                 return NoContent();
             }
@@ -72,9 +80,9 @@ namespace SigmaBotAPI.Controllers
         /// </summary>
         /// <returns>Ok if successful, otherwise a Bad Request response.</returns>
         [HttpDelete("clear")]
-        public IActionResult Clear()
+        public IActionResult Clear(string guildId)
         {
-            if (_requestService.ClearQueue())
+            if (_requestService.ClearQueue(guildId))
             {
                 return NoContent();
             }
@@ -89,11 +97,11 @@ namespace SigmaBotAPI.Controllers
         /// </summary>
         /// <returns>The number of requests.</returns>
         [HttpGet("count")]
-        public IActionResult GetRequestCount()
+        public IActionResult GetRequestCount(string guildId)
         {
             try
             {
-                int request = _requestService.RequestsCount();
+                int request = _requestService.RequestsCount(guildId);
                 return Ok(request);
             }
             catch (Exception ex)
@@ -108,30 +116,44 @@ namespace SigmaBotAPI.Controllers
         /// <param name="requestModel">The request model to add.</param>
         /// <returns>Ok if successful, otherwise a Bad Request response.</returns>
         [HttpPost("new")]
-        public IActionResult AddRequest(RequestModel requestModel)
+        public IActionResult AddRequest([FromBody] SongModel requestModel)
         {
-            requestModel.DateTime = DateTime.Now;
-            if (_requestService.AddRequest(requestModel))
+
+            var newSong = new SongEntity()
+            {
+                Id = requestModel.Id,
+                Name = requestModel.Name,
+                Url = requestModel.Url,
+                User = requestModel.User,
+                Thumbnail_Url = requestModel.Thumbnail_Url,
+                DateTime = DateTime.Now,
+                GuildId = requestModel.GuildId,
+                Status = _statusRepository.GetStatus(requestModel.GuildId)
+            };
+            if (_requestService.AddRequest(newSong))
             {
                 return Ok();
             }
             else { return BadRequest("Failed adding new request"); };
         }
         [HttpPost("playlist")]
-        public IActionResult AddPlaylist(ICollection<RequestModel> playlist)
+        public IActionResult AddPlaylist([FromBody] ICollection<SongModel> playlist)
         {
-            ICollection<RequestModel> newPlaylist = new List<RequestModel>();
+            ICollection<SongEntity> newPlaylist = new List<SongEntity>();
 
             foreach (var item in playlist)
             {
 
-                var newItem = new RequestModel
+                var newItem = new SongEntity
                 {
+                    Id = item.Id,
                     Name = item.Name,
                     Url = item.Url,
                     User = item.User,
                     Thumbnail_Url = item.Thumbnail_Url,
                     DateTime = DateTime.Now,
+                    GuildId = item.GuildId,
+                    Status = _statusRepository.GetStatus(item.GuildId)
 
                 };
 

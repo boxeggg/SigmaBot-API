@@ -1,7 +1,8 @@
 
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using SigmaBotAPI.Data;
 using SigmaBotAPI.Services;
-
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,10 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddSingleton<IRequestService, RequestService>();
-builder.Services.AddSingleton<IStatusService, StatusService>();
+builder.Services.AddTransient<ISongRepository, SongRepository>();
+builder.Services.AddTransient<IStatusRepository, StatusRepository>();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddSwaggerGen().AddSwaggerGenNewtonsoftSupport();
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
 

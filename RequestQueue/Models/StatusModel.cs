@@ -2,25 +2,10 @@
 {
     public class StatusModel
     {
-        public string GuildId { get; set; }
-        public LoopModes LoopMode { get; set; }
-        public bool OnVoiceChannel { get; set; }
-        public double Volume { get; set; }
-        public bool SkipQueued { get; set; }
-        public StatusModel()
-        {
-            GuildId = "";
-            LoopMode = LoopModes.None;
-            OnVoiceChannel = false;
-            Volume = 100;
-            SkipQueued = false;
-        }
-
-    }
-    public enum LoopModes
-    {
-        None = 0,
-        Song = 1,
-        Queue = 2,
+        public string Name { get; set; }
+        public string Url { get; set; }
+        public string User { get; set; }
+        public string Thumbnail_Url { get; set; }
+        public DateTime DateTime { get; set; }
     }
 }
