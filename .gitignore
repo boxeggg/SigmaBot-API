@@ -361,6 +361,12 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-
+#docker
 Dockerfile
 .dockerignore
+#database
+sqlite.db
+sqlite.db-shm
+sqlite.db-wal
+
+
