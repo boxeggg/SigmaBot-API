@@ -35,7 +35,8 @@ namespace SigmaBotAPI.Controllers
                 var requests = _mapper.Map<List<SongModel>>(_requestService.GetAllRequests(guildId));
                 return Ok(requests);
             }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 return BadRequest(ex.Message);
             }
         }
@@ -82,13 +83,14 @@ namespace SigmaBotAPI.Controllers
         [HttpDelete("clear")]
         public IActionResult Clear(string guildId)
         {
-            if (_requestService.ClearQueue(guildId))
+            try
             {
-                return NoContent();
+                _requestService.ClearQueue(guildId);
+                return Ok();
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest("Failed removing request");
+                return BadRequest(ex.Message);
             }
         }
 

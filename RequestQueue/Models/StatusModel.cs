@@ -1,11 +1,15 @@
-﻿namespace SigmaBotAPI.Models
+﻿using SigmaBotAPI.Data.Entities;
+
+namespace SigmaBotAPI.Models
 {
     public class StatusModel
     {
-        public string Name { get; set; }
-        public string Url { get; set; }
-        public string User { get; set; }
-        public string Thumbnail_Url { get; set; }
-        public DateTime DateTime { get; set; }
+        public string GuildId { get; set; }
+        public string GuildName { get; set; }
+        public LoopModes LoopMode { get; set; }
+        public bool OnVoiceChannel { get; set; }
+        public double Volume { get; set; }
+        public bool SkipQueued { get; set; }
+
     }
 }
