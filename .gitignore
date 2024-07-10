@@ -364,9 +364,6 @@ FodyWeavers.xsd
 #docker
 Dockerfile
 .dockerignore
-#database
-sqlite.db
-sqlite.db-shm
-sqlite.db-wal
+
 
 
