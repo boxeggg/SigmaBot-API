@@ -1,7 +1,7 @@
-﻿using SigmaBotAPI.Data;
-using SigmaBotAPI.Data.Entities;
+﻿using SigmaBotAPI.Domain.Data.Entities;
+using SigmaBotAPI.Infrastructure;
 
-namespace SigmaBotAPI.Services
+namespace SigmaBotAPI.Domain.Repositories
 {
     public interface IStatusRepository
     {
@@ -89,7 +89,7 @@ namespace SigmaBotAPI.Services
             if (statusToReset != null) _context.Remove(statusToReset);
             return _context.SaveChanges() > 0;
 
-            
+
 
         }
     }

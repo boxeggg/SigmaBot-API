@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using SigmaBotAPI.Data.Entities;
-using SigmaBotAPI.Models;
-using SigmaBotAPI.Services;
+using SigmaBotAPI.Application.Models;
+using SigmaBotAPI.Domain.Data.Entities;
+using SigmaBotAPI.Domain.Repositories;
 
-namespace SigmaBotAPI.Controllers
+namespace SigmaBotAPI.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -23,15 +23,14 @@ namespace SigmaBotAPI.Controllers
 
         }
 
-        /// <summary>
-        /// Retrieves all requests.
-        /// </summary>
-        /// <returns>A list of all requests.</returns>
+
         [HttpGet]
         public IActionResult GetAllRequests(string guildId)
         {
             try
             {
+                var status =  _statusRepository.GetStatus(guildId);
+                if(status == null)  return NotFound();
                 var requests = _mapper.Map<List<SongModel>>(_requestService.GetAllRequests(guildId));
                 return Ok(requests);
             }
@@ -41,50 +40,45 @@ namespace SigmaBotAPI.Controllers
             }
         }
 
-        /// <summary>
-        /// Retrieves the last request in the queue.
-        /// </summary>
-        /// <returns>The last request if it exists, otherwise a Bad Request response.</returns>
         [HttpGet("last")]
         public IActionResult GetLastRequest(string guildId)
         {
-            var request = _mapper.Map<SongModel>(_requestService.GetLastRequest(guildId));
-            if (request != null)
+            try
             {
-                return Ok(request);
+                var status = _statusRepository.GetStatus(guildId);
+                if (status == null) return NotFound();
+                var request = _mapper.Map<SongModel>(_requestService.GetLastRequest(guildId));
+                if (request != null) return Ok(request);
+                else return NotFound();
+
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest("There is no songs in the queue");
+                return BadRequest(ex.Message);
             }
         }
 
-        /// <summary>
-        /// Deletes the last request in the queue.
-        /// </summary>
-        /// <returns>Ok if successful, otherwise a Bad Request response.</returns>
         [HttpDelete("last")]
         public IActionResult Delete(string guildId)
         {
-            if (_requestService.RemoveLastRequest(guildId))
+            try
             {
-                return NoContent();
+                var status = _statusRepository.GetStatus(guildId);
+                if (status == null) return NotFound();
+                if (_requestService.RemoveLastRequest(guildId)) return Ok();
+                else return NotFound();
             }
-            else
-            {
-                return BadRequest("Failed removing request");
+            catch (Exception ex) {
+                return BadRequest(ex.Message);
             }
         }
-
-        /// <summary>
-        /// Clears all requests in the queue.
-        /// </summary>
-        /// <returns>Ok if successful, otherwise a Bad Request response.</returns>
         [HttpDelete("clear")]
         public IActionResult Clear(string guildId)
         {
             try
             {
+                var status = _statusRepository.GetStatus(guildId);
+                if (status == null) return NotFound();
                 _requestService.ClearQueue(guildId);
                 return Ok();
             }
@@ -93,16 +87,13 @@ namespace SigmaBotAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-        /// <summary>
-        /// Retrieves the count of requests in the queue.
-        /// </summary>
-        /// <returns>The number of requests.</returns>
         [HttpGet("count")]
         public IActionResult GetRequestCount(string guildId)
         {
             try
             {
+                var status = _statusRepository.GetStatus(guildId);
+                if (status == null) return NotFound();
                 int request = _requestService.RequestsCount(guildId);
                 return Ok(request);
             }
@@ -111,15 +102,11 @@ namespace SigmaBotAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-        /// <summary>
-        /// Adds a new request to the queue.
-        /// </summary>
-        /// <param name="requestModel">The request model to add.</param>
-        /// <returns>Ok if successful, otherwise a Bad Request response.</returns>
         [HttpPost("new")]
         public IActionResult AddRequest([FromBody] SongModel requestModel)
         {
+            var status = _statusRepository.GetStatus(requestModel.GuildId);
+            if (status == null) return NotFound($"Cannot find GuildId: {requestModel.GuildId}");
 
             var newSong = new SongEntity()
             {
@@ -130,7 +117,7 @@ namespace SigmaBotAPI.Controllers
                 Thumbnail_Url = requestModel.Thumbnail_Url,
                 DateTime = DateTime.Now,
                 GuildId = requestModel.GuildId,
-                Status = _statusRepository.GetStatus(requestModel.GuildId)
+                Status = status
             };
             if (_requestService.AddRequest(newSong))
             {
@@ -145,7 +132,8 @@ namespace SigmaBotAPI.Controllers
 
             foreach (var item in playlist)
             {
-
+                var status = _statusRepository.GetStatus(item.GuildId);
+                if (status == null) return NotFound($"Cannot find GuildId: {item.GuildId}");
                 var newItem = new SongEntity
                 {
                     Id = item.Id,

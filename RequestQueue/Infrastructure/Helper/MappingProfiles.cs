@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using SigmaBotAPI.Data.Entities;
-using SigmaBotAPI.Models;
+using SigmaBotAPI.Application.Models;
+using SigmaBotAPI.Domain.Data.Entities;
 
-namespace SigmaBotAPI.Helper
+namespace SigmaBotAPI.Infrastructure.Helper
 {
     public class MappingProfiles : Profile
     {
         public MappingProfiles()
         {
-            CreateMap<SongEntity,SongModel>();
+            CreateMap<SongEntity, SongModel>();
             CreateMap<StatusEntity, StatusModel>();
         }
     }

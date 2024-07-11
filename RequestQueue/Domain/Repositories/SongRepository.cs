@@ -1,12 +1,11 @@
-﻿
-using SigmaBotAPI.Data;
-using SigmaBotAPI.Data.Entities;
+﻿using SigmaBotAPI.Domain.Data.Entities;
+using SigmaBotAPI.Infrastructure;
 using SQLitePCL;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace SigmaBotAPI.Services
+namespace SigmaBotAPI.Domain.Repositories
 {
     public interface ISongRepository
     {
@@ -30,10 +29,10 @@ namespace SigmaBotAPI.Services
 
         public List<SongEntity> GetAllRequests(string guildId)
         {
-            return  _context.SongEntity
+            return _context.SongEntity
                 .Where(s => s.GuildId == guildId)
                 .ToList();
-            
+
         }
 
         public SongEntity GetLastRequest(string guildId)
@@ -48,10 +47,10 @@ namespace SigmaBotAPI.Services
         {
             try
             {
-                
+
                 _context.SongEntity.Add(request);
                 return _context.SaveChanges() > 0;
-                 
+
             }
             catch (Exception)
             {
@@ -70,7 +69,8 @@ namespace SigmaBotAPI.Services
                 return _context.SaveChanges() > 0;
 
             }
-            catch (Exception) { 
+            catch (Exception)
+            {
                 return false;
             }
         }
@@ -103,7 +103,7 @@ namespace SigmaBotAPI.Services
 
                 _context.SongEntity.RemoveRange(songsToRemove);
                 return _context.SaveChanges() > 0;
-                
+
             }
             catch (Exception)
             {

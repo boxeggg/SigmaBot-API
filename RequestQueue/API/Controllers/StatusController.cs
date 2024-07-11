@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using SigmaBotAPI.Data.Entities;
-using SigmaBotAPI.Models;
-using SigmaBotAPI.Services;
+using SigmaBotAPI.Application.Models;
+using SigmaBotAPI.Domain.Data.Entities;
+using SigmaBotAPI.Domain.Repositories;
 
-namespace SigmaBotAPI.Controllers
+namespace SigmaBotAPI.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -45,8 +45,8 @@ namespace SigmaBotAPI.Controllers
         {
             try
             {
-               return Ok (_mapper.Map<List<StatusModel>>(_statusService.GetAllStatuses()));
-    
+                return Ok(_mapper.Map<List<StatusModel>>(_statusService.GetAllStatuses()));
+
             }
             catch (Exception ex)
             {
@@ -58,7 +58,7 @@ namespace SigmaBotAPI.Controllers
         {
             try
             {
-                if (_statusService.CreateStatus(guildId,guildName))
+                if (_statusService.CreateStatus(guildId, guildName))
                 {
                     return Ok();
                 }
@@ -105,7 +105,7 @@ namespace SigmaBotAPI.Controllers
                 return Ok();
             }
             return NotFound();
-            
+
         }
     }
 }

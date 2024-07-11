@@ -1,9 +1,8 @@
 
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using SigmaBotAPI.Data;
-using SigmaBotAPI.Services;
-
+using SigmaBotAPI.Domain.Repositories;
+using SigmaBotAPI.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +28,7 @@ if (app.Environment.IsDevelopment())
     .AllowCredentials()
     .SetIsOriginAllowed(origin => true));
 }
+
 
 app.UseSwagger();
 app.UseSwaggerUI();

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace SigmaBotAPI.Data.Entities
+namespace SigmaBotAPI.Domain.Data.Entities
 {
     public class StatusEntity
     {

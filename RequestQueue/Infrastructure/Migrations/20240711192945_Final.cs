@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SigmaBotAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Final : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,6 +16,7 @@ namespace SigmaBotAPI.Migrations
                 columns: table => new
                 {
                     GuildId = table.Column<string>(type: "TEXT", nullable: false),
+                    GuildName = table.Column<string>(type: "TEXT", nullable: false),
                     LoopMode = table.Column<int>(type: "INTEGER", nullable: false),
                     OnVoiceChannel = table.Column<bool>(type: "INTEGER", nullable: false),
                     Volume = table.Column<double>(type: "REAL", nullable: false),

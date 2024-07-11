@@ -1,6 +1,6 @@
-﻿using SigmaBotAPI.Data.Entities;
+﻿using SigmaBotAPI.Domain.Data.Entities;
 
-namespace SigmaBotAPI.Models
+namespace SigmaBotAPI.Application.Models
 {
     public class StatusModel
     {

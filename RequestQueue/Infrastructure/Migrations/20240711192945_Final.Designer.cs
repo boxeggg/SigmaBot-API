@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SigmaBotAPI.Data;
+using SigmaBotAPI.Infrastructure;
 
 #nullable disable
 
 namespace SigmaBotAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240704214752_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240711192945_Final")]
+    partial class Final
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,7 +20,7 @@ namespace SigmaBotAPI.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.6");
 
-            modelBuilder.Entity("SigmaBotAPI.Models.SongEntity", b =>
+            modelBuilder.Entity("SigmaBotAPI.Domain.Data.Entities.SongEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,9 +56,13 @@ namespace SigmaBotAPI.Migrations
                     b.ToTable("SongEntity");
                 });
 
-            modelBuilder.Entity("SigmaBotAPI.Models.StatusEntity", b =>
+            modelBuilder.Entity("SigmaBotAPI.Domain.Data.Entities.StatusEntity", b =>
                 {
                     b.Property<string>("GuildId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("GuildName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("LoopMode")
@@ -78,9 +82,9 @@ namespace SigmaBotAPI.Migrations
                     b.ToTable("StatusEntity");
                 });
 
-            modelBuilder.Entity("SigmaBotAPI.Models.SongEntity", b =>
+            modelBuilder.Entity("SigmaBotAPI.Domain.Data.Entities.SongEntity", b =>
                 {
-                    b.HasOne("SigmaBotAPI.Models.StatusEntity", "Status")
+                    b.HasOne("SigmaBotAPI.Domain.Data.Entities.StatusEntity", "Status")
                         .WithMany("SongsQueue")
                         .HasForeignKey("GuildId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -89,7 +93,7 @@ namespace SigmaBotAPI.Migrations
                     b.Navigation("Status");
                 });
 
-            modelBuilder.Entity("SigmaBotAPI.Models.StatusEntity", b =>
+            modelBuilder.Entity("SigmaBotAPI.Domain.Data.Entities.StatusEntity", b =>
                 {
                     b.Navigation("SongsQueue");
                 });

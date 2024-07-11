@@ -1,4 +1,4 @@
-﻿namespace SigmaBotAPI.Models
+﻿namespace SigmaBotAPI.Application.Models
 {
     public class SongModel
     {
