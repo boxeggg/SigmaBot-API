@@ -10,20 +10,20 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'SigmaBot Dashboard';
-  onVoiceChannel: boolean | undefined = undefined;
   isLoading: boolean = false;
   constructor(private service: StatusService, private injector: Injector) { }
 
   ngOnInit() {
     const router = this.injector.get(Router);
     this.isLoading = true;
-    this.service.getStatus().subscribe((data: Status) => {
+      this.service.getAllStatuses().subscribe((data: Status[]) => {
       this.isLoading = false;
-      if (!data.onVoiceChannel) {
-        router.navigate(['novoice']);
-      }
+      router.navigate(['guildlist']);
+
     }, () => this.isLoading = false
+  
     );
+    
     
 
 

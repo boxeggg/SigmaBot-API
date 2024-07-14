@@ -12,8 +12,8 @@ export class StatusService {
   private apiUrl = environment.apiUrl;
   constructor(private http: HttpClient, private errorService: ErrorService) { }
 
-  getStatus(): Observable<Status>{
-    return this.http.get<Status>(this.apiUrl + "/api/" + "Status").pipe(catchError(error => this.errorService.handleError(error)));
+  getAllStatuses(): Observable<Status[]>{
+    return this.http.get<Status[]>(this.apiUrl + "/api/" + "Status" + "/all").pipe(catchError(error => this.errorService.handleError(error)));
   }
 
   }

@@ -28,7 +28,11 @@ if (app.Environment.IsDevelopment())
     .AllowCredentials()
     .SetIsOriginAllowed(origin => true));
 }
-
+app.UseCors(x => x
+.AllowAnyMethod()
+.AllowAnyHeader()
+.AllowCredentials()
+.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost"));
 
 app.UseSwagger();
 app.UseSwaggerUI();
