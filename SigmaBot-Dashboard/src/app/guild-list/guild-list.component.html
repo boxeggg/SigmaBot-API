@@ -1,2 +1,8 @@
-<p>guild-list works!</p>
-<app-guild *ngFor="let guild of guildList" [guild]="guild"></app-guild>
+
+<div class="container custom-margin d-flex flex-column align-items-center justify-content-center min-vh-100 ">
+  <p class="text-center display-5"> Choose your server: </p>
+  <div class="list-group w-50 server-list ">
+    <app-guild *ngFor="let guild of guildList" [guild]="guild"></app-guild>
+  </div>
+</div>
+ 

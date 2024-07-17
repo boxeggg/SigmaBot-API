@@ -1,0 +1,16 @@
+.guild-image {
+  width: 50px;
+  height: 50px;
+}
+.guild-name {
+  flex: 1;
+  text-align: center;
+  font-weight: 400;
+  font-size: 20px;
+}
+.list-group-item {
+  display: flex;
+  align-items: center;
+  padding: 10px; 
+}
+
