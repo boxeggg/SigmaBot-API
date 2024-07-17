@@ -1,2 +1,9 @@
-<button class="list-group-item list-group-item-action" >
-  <img src="assets/discord.png" class="guild-image "> <p class="text-uppercase font-weight-bold guild-name" > {{guild.guildName}} </p></button>
+<button class="list-group-item list-group-item-action" [disabled]="!guild.onVoiceChannel">
+  <img src="assets/discord.png" class="guild-image ">
+  <p class="text-uppercase font-weight-bold guild-name" > {{guild.guildName}} </p>
+  <img src="assets/headphones.png" class="guild-image" style="width: 40px; height: 40px; margin-right: 10px">
+  <img [src]="imageUrl" class="guild-icon" >
+
+
+
+</button>

@@ -7,6 +7,11 @@ import { Status } from '../../interfaces/StatusInterface';
 })
 export class GuildComponent {
   @Input() guild: Status
+  imageUrl: string;
+  ngOnInit() {
+    if (this.guild.onVoiceChannel) this.imageUrl = "assets/green.png"
+    else this.imageUrl = "assets/red.png"
+  }
 
 
 
