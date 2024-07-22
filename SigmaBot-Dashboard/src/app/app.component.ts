@@ -18,7 +18,7 @@ export class AppComponent {
     this.isLoading = true;
       this.service.getAllStatuses().subscribe((data: Status[]) => {
       this.isLoading = false;
-      router.navigate(['guildlist']);
+      router.navigate(['guilds']);
 
     }, () => this.isLoading = false
   

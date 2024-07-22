@@ -10,6 +10,7 @@ import { ErrorService } from './services/error.service';
 import { NotOnVoiceComponent } from './errors/not-on-voice/not-on-voice.component';
 import { GuildListComponent } from './guild-list/guild-list.component';
 import { GuildComponent } from './guild-list/guild/guild.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { GuildComponent } from './guild-list/guild/guild.component';
     HttpErrorComponent,
     NotOnVoiceComponent,
     GuildListComponent,
-    GuildComponent
+    GuildComponent,
+    DashboardComponent
   ],
   imports: [
     NgIf,
