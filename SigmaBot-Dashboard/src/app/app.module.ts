@@ -12,6 +12,7 @@ import { GuildListComponent } from './guild-list/guild-list.component';
 import { GuildComponent } from './guild-list/guild/guild.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,11 +30,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NgbModule,
     NgFor
   ],
-  providers: [{
-    provide: ErrorHandler,
-    useClass: ErrorService
-
-  }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

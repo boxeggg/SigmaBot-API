@@ -20,6 +20,7 @@ export class ErrorService implements ErrorHandler {
       this.errorMessage = `Error Code: ${error.status}`;
       this.problem = error.message;
     }
+    console.error('Error:', this.errorMessage, this.problem);
     this.ngZone.run(() => router.navigate(['error']));
     throw new Error();
   }

@@ -9,9 +9,10 @@ import { StatusService } from '../services/status.service';
 })
 export class GuildListComponent {
   guildList: Status[] = [];
-  constructor(private service: StatusService, private injector: Injector) { }
+  constructor(private service: StatusService) { }
   ngOnInit() {
     this.service.getAllStatuses().subscribe((data: Status[]) => this.guildList = data)
+   
   }
 }
 

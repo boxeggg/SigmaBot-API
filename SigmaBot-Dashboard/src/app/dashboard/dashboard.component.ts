@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { Status } from '../interfaces/StatusInterface';
-import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { Router } from '@angular/router';
+import { RequestService } from '../services/request.service';
+import { Requests } from '../interfaces/RequestInterface';
+import { UrlConveter } from '../Helper/UrlConveter';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,15 +12,24 @@ import { filter } from 'rxjs';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private requestService: RequestService, private sanitizer: DomSanitizer) { }
   navigation = this.router.getCurrentNavigation();
-  guild: Status = this.navigation.extras.state['guild'];;
+  guild: Status = this.navigation.extras.state['guild'];
+  playlist: Requests[] = [];
+  currentlyPlayingUrl: string;
+  
   
   
   ngOnInit() {
-    console.log(this.guild)
+    const id: string = this.guild.guildId;
+    this.requestService.getRequests(id).subscribe((data: Requests[]) => {
+      this.playlist = data;
+      this.currentlyPlayingUrl = UrlConveter.getEmbedUrl(data[0].url);
+    });
 
+    
   }
+
   
 
 }

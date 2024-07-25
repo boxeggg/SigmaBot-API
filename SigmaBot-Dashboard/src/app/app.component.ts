@@ -2,12 +2,16 @@ import { Component, Injector } from '@angular/core';
 import { Status } from './interfaces/StatusInterface';
 import { StatusService } from './services/status.service';
 import { Router } from '@angular/router';
+import { Pipe, PipeTransform } from "@angular/core";
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
+
 export class AppComponent {
   title = 'SigmaBot Dashboard';
   isLoading: boolean = false;

@@ -13,7 +13,10 @@ export class StatusService {
   constructor(private http: HttpClient, private errorService: ErrorService) { }
 
   getAllStatuses(): Observable<Status[]>{
-    return this.http.get<Status[]>(this.apiUrl + "/api/" + "Status" + "/all").pipe(catchError(error => this.errorService.handleError(error)));
+    return this.http.get<Status[]>(this.apiUrl + "/api/" + "Status" + "/all")
+  }
+  getStatusById(id: string): Observable<Status[]> {
+    return this.http.get<Status[]>(this.apiUrl + "/api/" + "Status", { params: { guildId: id } })
   }
 
   }
