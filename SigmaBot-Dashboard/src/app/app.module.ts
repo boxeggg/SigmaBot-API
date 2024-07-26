@@ -11,10 +11,12 @@ import { NotOnVoiceComponent } from './errors/not-on-voice/not-on-voice.componen
 import { GuildListComponent } from './guild-list/guild-list.component';
 import { GuildComponent } from './guild-list/guild/guild.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SafePipe } from '../Pipes/Safe';
 
 
 @NgModule({
   declarations: [
+    SafePipe,
     AppComponent,
     HttpErrorComponent,
     NotOnVoiceComponent,

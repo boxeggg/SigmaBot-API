@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Pipe, PipeTransform } from "@angular/core";
 import { DomSanitizer } from '@angular/platform-browser';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -27,6 +28,7 @@ export class AppComponent {
     }, () => this.isLoading = false
   
     );
+
     
     
 

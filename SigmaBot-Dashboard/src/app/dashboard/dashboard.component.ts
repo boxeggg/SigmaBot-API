@@ -22,9 +22,11 @@ export class DashboardComponent {
   
   ngOnInit() {
     const id: string = this.guild.guildId;
+    
     this.requestService.getRequests(id).subscribe((data: Requests[]) => {
       this.playlist = data;
       this.currentlyPlayingUrl = UrlConveter.getEmbedUrl(data[0].url);
+      
     });
 
     

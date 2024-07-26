@@ -9,5 +9,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\app\Helper\" />
+    <Folder Include="src\Pipes\" />
   </ItemGroup>
 </Project>
