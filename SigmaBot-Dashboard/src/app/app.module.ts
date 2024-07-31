@@ -5,24 +5,22 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgFor, NgIf } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpErrorComponent } from './errors/http-error/http-error.component';
 import { ErrorService } from './services/error.service';
-import { NotOnVoiceComponent } from './errors/not-on-voice/not-on-voice.component';
 import { GuildListComponent } from './guild-list/guild-list.component';
 import { GuildComponent } from './guild-list/guild/guild.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SafePipe } from '../Pipes/Safe';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 
 @NgModule({
   declarations: [
     SafePipe,
     AppComponent,
-    HttpErrorComponent,
-    NotOnVoiceComponent,
     GuildListComponent,
     GuildComponent,
-    DashboardComponent
+    DashboardComponent,
+    NotfoundComponent
   ],
   imports: [
     NgIf,

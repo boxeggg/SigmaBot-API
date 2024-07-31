@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HttpErrorComponent } from './http-error.component';
+import { NotfoundComponent } from './notfound.component';
 
-describe('HttpErrorComponent', () => {
-  let component: HttpErrorComponent;
-  let fixture: ComponentFixture<HttpErrorComponent>;
+describe('NotfoundComponent', () => {
+  let component: NotfoundComponent;
+  let fixture: ComponentFixture<NotfoundComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HttpErrorComponent]
+      declarations: [NotfoundComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(HttpErrorComponent);
+    fixture = TestBed.createComponent(NotfoundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

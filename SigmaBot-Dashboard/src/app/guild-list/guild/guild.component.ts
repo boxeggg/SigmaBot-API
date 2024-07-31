@@ -9,15 +9,16 @@ import { Router } from '@angular/router';
 export class GuildComponent {
   constructor(private router: Router) { }
   @Input() guild: Status
+
   imageUrl: string;
   guildName: string;
   ngOnInit() {
+    if (this.guild === undefined) this.router.navigate(['/**']);
     if (this.guild.onVoiceChannel) this.imageUrl = "assets/green.png"
     else this.imageUrl = "assets/red.png"
     this.guildName = this.guild.guildName;
   }
   navigateToDashboard() {
-
     this.router.navigate(['/guilds', this.guildName], { state: { guild: this.guild } });
   }
 
