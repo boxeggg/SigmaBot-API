@@ -1,4 +1,26 @@
+.back-icon{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin: 10px;
+}
+.back-icon:hover {
+    cursor: pointer;
+}
+.container{
+    min-width: 100vw;
+    display: flex;
+    justify-content: space-between
+
+}
+.title{
+    font-size: 20px;
+    margin-left: 5px;
+    max-width: 100vw;
+    font-weight: 400;
+}
 .player {
+  margin-left: 50px;
   height: 50vh;
-  width: 50vw
+  width: 40vw
 }

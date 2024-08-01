@@ -20,7 +20,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     GuildListComponent,
     GuildComponent,
     DashboardComponent,
-    NotfoundComponent
+    NotfoundComponent,
   ],
   imports: [
     NgIf,

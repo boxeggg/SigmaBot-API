@@ -1,7 +1,11 @@
-
-<div class="player">
-  <div class="embed-responsive embed-responsive-16by9 w-100 h-100 ">
-    <iframe class="embed-responsive-item w-100 h-100 " [src]="currentlyPlayingUrl | safe"> frameborder="0" allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<i class="fa-solid fa-house back-icon"  (click)="navigateToList()">   </i>
+<div class="container">
+  <div class="player">
+    <div class="embed-responsive embed-responsive-16by9 w-100 h-100 ">
+      <iframe class="embed-responsive-item w-100 h-100 " [src]="currentlyPlayingUrl | safe"> frameborder="0" allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <p class="title"> {{currentlyPlaying.name}}</p>
   </div>
+  <div> ok </div>
 </div>
 

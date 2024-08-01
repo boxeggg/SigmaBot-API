@@ -17,6 +17,8 @@ export class DashboardComponent {
   guild: Status = this.navigation.extras.state['guild'];
   playlist: Requests[] = [];
   currentlyPlayingUrl: string;
+  currentlyPlaying: Requests
+  
   
   
   
@@ -25,13 +27,14 @@ export class DashboardComponent {
     
     this.requestService.getRequests(id).subscribe((data: Requests[]) => {
       this.playlist = data;
+      this.currentlyPlaying = data[0];
       this.currentlyPlayingUrl = UrlConveter.getEmbedUrl(data[0].url);
-      
     });
-
     
   }
-
+  navigateToList() {
+    this.router.navigate(["guilds"])
+  }
   
 
 }

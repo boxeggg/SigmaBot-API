@@ -2,8 +2,6 @@ import { Component, Injector } from '@angular/core';
 import { Status } from './interfaces/StatusInterface';
 import { StatusService } from './services/status.service';
 import { Router } from '@angular/router';
-import { Pipe, PipeTransform } from "@angular/core";
-import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -20,14 +18,8 @@ export class AppComponent {
 
   ngOnInit() {
     const router = this.injector.get(Router);
-    this.isLoading = true;
-      this.service.getAllStatuses().subscribe((data: Status[]) => {
-      this.isLoading = false;
-      router.navigate(['guilds']);
-
-    }, () => this.isLoading = false
-  
-    );
+    router.navigate(['guilds']);
+  }
 
     
     
@@ -38,4 +30,3 @@ export class AppComponent {
     
   }
 
-}
