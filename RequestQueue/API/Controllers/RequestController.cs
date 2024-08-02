@@ -6,7 +6,7 @@ using SigmaBotAPI.Domain.Repositories;
 
 namespace SigmaBotAPI.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]s")]
     [ApiController]
     public class RequestController : ControllerBase
     {
@@ -40,23 +40,6 @@ namespace SigmaBotAPI.API.Controllers
             }
         }
 
-        [HttpGet("last")]
-        public IActionResult GetLastRequest(string guildId)
-        {
-            try
-            {
-                var status = _statusRepository.GetStatus(guildId);
-                if (status == null) return NotFound();
-                var request = _mapper.Map<SongModel>(_requestService.GetLastRequest(guildId));
-                if (request != null) return Ok(request);
-                else return NotFound();
-
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
 
         [HttpDelete("last")]
         public IActionResult Delete(string guildId)
