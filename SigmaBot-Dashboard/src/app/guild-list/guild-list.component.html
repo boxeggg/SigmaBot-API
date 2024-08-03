@@ -1,6 +1,9 @@
-<div class="container">
-  <p class="text-center display-5"> Choose your server: </p>
-  <div class="list-group  server-list w-100 ">
+<div class="container" *ngIf="notNull; else null_block">
+  <p class="text-center display-5" > Choose your server: </p>
+  <div class="list-group  server-list w-100  ">
     <app-guild *ngFor="let guild of guildList" [guild]="guild"></app-guild>
   </div>
 </div>
+<ng-template #null_block>
+  <p class="text-center display-5"> Server list is null </p>
+ </ng-template>

@@ -10,10 +10,22 @@ import { Router } from '@angular/router';
 })
 export class GuildListComponent {
   guildList: Status[] = [];
+  notNull: boolean;
+
   constructor(private service: StatusService, private injector: Injector) { }
   ngOnInit() {
     const router = this.injector.get(Router);
-    this.service.getAllStatuses().subscribe((data: Status[]) => this.guildList = data, () => router.navigate(['**']))
+    this.service.getAllStatuses().subscribe((data: Status[]) => {
+      if (data.length) {
+        this.guildList = data;
+        this.notNull = true;
+        return
+      }
+      this.notNull = false;
+    },
+
+
+      () => router.navigate(['**']));
    
   }
 }
