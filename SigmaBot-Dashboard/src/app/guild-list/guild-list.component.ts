@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class GuildListComponent {
   guildList: Status[] = [];
-  notNull: boolean;
+  info: string = "";
+
 
   constructor(private service: StatusService, private injector: Injector) { }
   ngOnInit() {
@@ -18,10 +19,10 @@ export class GuildListComponent {
     this.service.getAllStatuses().subscribe((data: Status[]) => {
       if (data.length) {
         this.guildList = data;
-        this.notNull = true;
+        this.info = "Choose your server:";
         return
       }
-      this.notNull = false;
+      this.info = "Server list is null";
     },
 
 

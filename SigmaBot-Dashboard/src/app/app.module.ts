@@ -11,6 +11,9 @@ import { GuildComponent } from './guild-list/guild/guild.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SafePipe } from '../Pipes/Safe';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { PlaylistComponent } from './dashboard/playlist/playlist.component';
+import { RequestComponent } from './dashboard/playlist/request/request.component';
+
 
 
 @NgModule({
@@ -21,6 +24,9 @@ import { NotfoundComponent } from './notfound/notfound.component';
     GuildComponent,
     DashboardComponent,
     NotfoundComponent,
+    PlaylistComponent,
+    RequestComponent,
+
   ],
   imports: [
     NgIf,

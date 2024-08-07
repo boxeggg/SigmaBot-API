@@ -13,7 +13,7 @@ export class RequestService {
   constructor(private http: HttpClient, private errorService: ErrorService) { }
 
   getRequests(id: string): Observable<Requests[]> {
-    return this.http.get<Requests[]>(this.apiUrl + "/api/" + "Request", { params: {guildId: id }})
+    return this.http.get<Requests[]>(this.apiUrl + "/api/" + "Requests", { params: {guildId: id }})
   }
 
 }
