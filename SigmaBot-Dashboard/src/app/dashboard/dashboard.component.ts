@@ -19,18 +19,25 @@ export class DashboardComponent {
   currentlyPlayingUrl: string;
   currentlyPlaying: Requests;
   
-  
-  
+ 
   
   ngOnInit() {
     const id: string = this.guild.guildId;
-    
     this.requestService.getRequests(id).subscribe((data: Requests[]) => {
       this.playlist = data;
       this.currentlyPlaying = data[0];
       this.currentlyPlayingUrl = UrlConveter.getEmbedUrl(data[0].url);
     });
     
+  }
+  skipRequest() {
+    let guildId = this.guild.guildId;
+    console.log("fajnie");
+    this.requestService.skipRequest(guildId).subscribe({
+      next: (response) => console.log('Request successful:', response),
+      error: (error) => console.error('Error occurred:', error)
+    });
+
   }
   navigateToList() {
     this.router.navigate(["guilds"])

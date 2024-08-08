@@ -1,16 +1,15 @@
 <i class="fa-solid fa-house back-icon"  (click)="navigateToList()">   </i>
 <div class="container">
-    <div class="player d-none d-md-block">
-      <div class="embed-responsive embed-responsive-16by9 w-100 h-100 ">
-        <iframe class="embed-responsive-item w-100 h-100 " [src]="currentlyPlayingUrl | safe"> frameborder="0" allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <div class="controls">
-        <div class="skip-icon"> <i class="fa-solid fa-forward"></i> </div>
-        <div class="loop-icon"> <i class="fa-solid fa-forward"></i> </div>
-        <div class="volume"> <input type="range" class="form-range" min="0" max="100"> </div>
-
-      </div>
+  <div class="player d-none d-md-block">
+    <div class="embed-responsive embed-responsive-16by9 w-100 h-100 ">
+      <iframe class="embed-responsive-item w-100 h-100 " [src]="currentlyPlayingUrl | safe"> frameborder="0" allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
+    <div class="controls ">
+        <i class="fa-solid fa-forward control-icon" alt="skip" (click)="skipRequest()"></i>
+        <img class="control-icon" src="assets/loop.png" alt="loop">  
+        <input type="range" class="form-range volume-control" min="0" max="100" alt="volume">
+      </div>
+  </div>
 
   <app-playlist [playlist]="playlist"></app-playlist>
 </div>

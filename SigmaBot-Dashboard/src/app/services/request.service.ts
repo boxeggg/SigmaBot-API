@@ -15,5 +15,17 @@ export class RequestService {
   getRequests(id: string): Observable<Requests[]> {
     return this.http.get<Requests[]>(this.apiUrl + "/api/" + "Requests", { params: {guildId: id }})
   }
+  skipRequest(guildId: string): Observable<any> {
+    const url = `${this.apiUrl}/api/Status?guildId=${guildId}`; 
+    const body = [
+      
+      {
+        value: true,
+        path: '/SkipQueued',
+        op: 'replace'
+      }
+    ];
 
+    return this.http.patch(url, body);
+  }
 }
