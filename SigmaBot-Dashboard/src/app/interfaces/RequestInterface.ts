@@ -3,7 +3,7 @@ export interface Requests {
   name: string;
   url: string;
   user: string;
-  thumbnail_url: string
+  thumbnail_Url: string
   dateTime: string
   guildId: string
   

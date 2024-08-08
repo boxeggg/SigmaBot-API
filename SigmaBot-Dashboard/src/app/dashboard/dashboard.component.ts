@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { RequestService } from '../services/request.service';
 import { Requests } from '../interfaces/RequestInterface';
 import { UrlConveter } from '../Helper/UrlConveter';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +17,7 @@ export class DashboardComponent {
   guild: Status = this.navigation.extras.state['guild'];
   playlist: Requests[] = [];
   currentlyPlayingUrl: string;
-  currentlyPlaying: Requests
+  currentlyPlaying: Requests;
   
   
   

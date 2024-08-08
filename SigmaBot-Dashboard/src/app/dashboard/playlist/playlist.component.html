@@ -1,11 +1,4 @@
 <div class="playlist-container">
-  <app-request></app-request>
+  <app-request *ngFor="let request of playlist" [request]="request"></app-request>
 </div>
-<img src="https://via.placeholder.com/100" alt="Thumbnail" class="thumbnail">
-<div class="info">
-  <h5>Nazwa Requestu 1</h5>
-  <p><strong>Użytkownik:</strong> Jan Kowalski</p>
-  <p><strong>Data i Czas:</strong> 2024-08-05 14:30</p>
-  <p><strong>ID Guild:</strong> 123456</p>
-  <p class="text-muted">ID Requestu: 1</p>
-</div>
+

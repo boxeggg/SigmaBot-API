@@ -9,4 +9,6 @@ import { Requests } from '../../../interfaces/RequestInterface';
 export class RequestComponent {
   @Input() request: Requests;
 
+
+
 }

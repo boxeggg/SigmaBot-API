@@ -1,1 +1,8 @@
-<p>request works!</p>
+<div class="playlist-item">
+  <img [src]="request.thumbnail_Url | safe" alt="Thumbnail" class="thumbnail">
+  <div class="info">
+    <h5>{{request.name}}</h5>
+    <p><strong>User:</strong> {{request.user}}</p>
+    <p><strong>Date:</strong> {{request.dateTime}}</p>
+  </div>
+</div>

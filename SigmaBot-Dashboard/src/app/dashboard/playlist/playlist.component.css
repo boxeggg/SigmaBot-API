@@ -1,39 +1,8 @@
 .playlist-container {
-  max-height: 500px; 
-  overflow-y: auto; 
+  max-height: 95vh; 
+  overflow-y: auto;
+  max-width: 40vw;
+ 
+
 }
 
-.playlist-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-
-.thumbnail {
-  width: 80px;
-  height: 80px;
-  flex-shrink: 0;
-  border-radius: 8px;
-  object-fit: cover;
-  margin-right: 15px;
-}
-
-.info {
-  flex-grow: 1;
-}
-
-  .info h5 {
-    margin: 0 0 5px 0;
-  }
-
-  .info p {
-    margin: 0;
-  }
-
-.text-muted {
-  font-size: 0.9em;
-  color: #6c757d;
-}
