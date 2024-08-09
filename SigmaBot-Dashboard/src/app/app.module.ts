@@ -13,6 +13,8 @@ import { SafePipe } from '../Pipes/Safe';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { PlaylistComponent } from './dashboard/playlist/playlist.component';
 import { RequestComponent } from './dashboard/playlist/request/request.component';
+import { SkipComponent } from './dashboard/skip/skip.component';
+
 
 
 
@@ -26,6 +28,8 @@ import { RequestComponent } from './dashboard/playlist/request/request.component
     NotfoundComponent,
     PlaylistComponent,
     RequestComponent,
+    SkipComponent,
+
 
   ],
   imports: [
