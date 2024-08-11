@@ -7,8 +7,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class SkipComponent {
   @Output() action = new EventEmitter<void>();
+  onCooldown: boolean = false;
+
   notifyClicked() {
+    this.onCooldown = true
     this.action.emit();
+    setTimeout(() => this.onCooldown = false, 5000)
   }
 
 }

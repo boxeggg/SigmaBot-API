@@ -1,1 +1,4 @@
-<i class="fa-solid fa-forward control-icon" alt="skip" (click)="notifyClicked()"></i>
+<i class="fa-solid fa-forward control-icon" aria-label="skip"
+   (click)="!onCooldown && notifyClicked()"
+   [class.disabled]="onCooldown"></i>
+
