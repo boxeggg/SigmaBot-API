@@ -19,9 +19,9 @@ export class DashboardComponent {
   playlist: Requests[] = [];
   currentlyPlayingUrl: string;
   currentlyPlaying: Requests;
-  
- 
-  
+
+
+
   ngOnInit() {
     this.loadData();
   }
@@ -40,6 +40,7 @@ export class DashboardComponent {
       complete: () => setTimeout(() => this.loadData(), 2000),
       error: (error) => console.error('Error occurred:', error)
     });
+
 
 
   }
@@ -66,7 +67,12 @@ export class DashboardComponent {
         error: (error) => console.error('Error occurred:', error)
       });
     }
-   
-  }
 
+  }
+  setVolume(volume: number) {
+    let guildId = this.guild.guildId;
+    this.requestService.setVolume(guildId, volume).subscribe({
+      error: (error) => console.error('Error occurred:', error)
+    });
+  }
 }

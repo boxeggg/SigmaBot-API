@@ -15,6 +15,9 @@ import { PlaylistComponent } from './dashboard/playlist/playlist.component';
 import { RequestComponent } from './dashboard/playlist/request/request.component';
 import { SkipComponent } from './dashboard/skip/skip.component';
 import { LoopComponent } from './dashboard/loop/loop.component';
+import { VolumeComponent } from './dashboard/volume/volume.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 
@@ -31,10 +34,13 @@ import { LoopComponent } from './dashboard/loop/loop.component';
     RequestComponent,
     SkipComponent,
     LoopComponent,
+    VolumeComponent,
 
 
   ],
   imports: [
+    ReactiveFormsModule,
+    FormsModule,
     NgIf,
     BrowserModule,
     AppRoutingModule,

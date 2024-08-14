@@ -7,7 +7,8 @@
     <div class="controls ">
       <app-skip class="control-icon" (action)="skipRequest()"></app-skip>
       <app-loop class="control-icon" (action)="loop($event)" [selected]="guild.loopMode"></app-loop>
-      <input type="range" class="form-range volume-control" min="0" max="100" alt="volume">
+      <app-volume class="volume-control" (action)="setVolume($event)" [initialVolume]="guild.volume"></app-volume>
+
     </div>
   </div>
 

@@ -41,4 +41,17 @@ export class RequestService {
 
     return this.http.patch(url, body);
   }
+  setVolume(guildId: string, volume: Number): Observable<any> {
+    const url = `${this.apiUrl}/api/Status?guildId=${guildId}`;
+    const body = [
+
+      {
+        value: volume,
+        path: '/Volume',
+        op: 'replace'
+      }
+    ];
+
+    return this.http.patch(url, body);
+  }
 }

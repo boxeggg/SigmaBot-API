@@ -30,13 +30,14 @@
 .control-icon:hover {
   cursor: pointer;
 }
+.volume-control {
+  margin-top: 5px;
+  width: 100px;
+}
+
 .player {
   margin-left: 50px;
   height: 50vh;
   width: 40vw;
   margin-top: 20vh;
-}
-.volume-control {
-  margin-top: 5px;
-  width: 100px;
 }
