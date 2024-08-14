@@ -14,6 +14,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { PlaylistComponent } from './dashboard/playlist/playlist.component';
 import { RequestComponent } from './dashboard/playlist/request/request.component';
 import { SkipComponent } from './dashboard/skip/skip.component';
+import { LoopComponent } from './dashboard/loop/loop.component';
 
 
 
@@ -29,6 +30,7 @@ import { SkipComponent } from './dashboard/skip/skip.component';
     PlaylistComponent,
     RequestComponent,
     SkipComponent,
+    LoopComponent,
 
 
   ],

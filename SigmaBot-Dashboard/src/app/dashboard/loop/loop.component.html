@@ -1,0 +1,8 @@
+<div class="icon-container" (mouseenter)="showOptions()" (mouseleave)="hideOptions()">
+  <img class="control-icon" src="assets/loop.png" alt="loop">
+  <div class="options" *ngIf="optionsVisible">
+    <button (click)="selectOption('off',0)" [class.selected]="selected == 0" [disabled]="selected == 0">Off</button>
+    <button (click)="selectOption('song',1)" [class.selected]="selected == 1" [disabled]="selected == 1">Song</button>
+    <button (click)="selectOption('queue',2)" [class.selected]="selected == 2" [disabled]="selected == 2">Queue</button>
+  </div>
+</div>

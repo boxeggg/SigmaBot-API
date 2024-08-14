@@ -1,0 +1,41 @@
+.control-icon {
+  width: 25px;
+  height: 25px;
+}
+.icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.options {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.options button {
+    background-color: white;
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 5px;
+    text-align: left;
+    cursor: pointer;
+  }
+
+.options button:hover {
+      background-color: #f0f0f0;
+ }
+.selected {
+ opacity: 0.5;
+}
+.selected:hover{
+    cursor:not-allowed!important;
+}
+

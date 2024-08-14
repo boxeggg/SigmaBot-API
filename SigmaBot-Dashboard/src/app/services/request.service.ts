@@ -28,4 +28,17 @@ export class RequestService {
 
     return this.http.patch(url, body);
   }
+  loopRequests(guildId: string, mode: number): Observable<any> {
+    const url = `${this.apiUrl}/api/Status?guildId=${guildId}`;
+    const body = [
+
+      {
+        value: mode,
+        path: '/LoopMode',
+        op: 'replace'
+      }
+    ];
+
+    return this.http.patch(url, body);
+  }
 }

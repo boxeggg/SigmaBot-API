@@ -41,10 +41,32 @@ export class DashboardComponent {
       error: (error) => console.error('Error occurred:', error)
     });
 
+
   }
   navigateToList() {
     this.router.navigate(["guilds"])
   }
-  
+  loop(mode: string) {
+    let guildId = this.guild.guildId;
+    if (mode === "off") {
+      let numMode = 0;
+      this.requestService.loopRequests(guildId, numMode).subscribe({
+        error: (error) => console.error('Error occurred:', error)
+      });
+    }
+    if (mode === "song") {
+      let numMode = 1;
+      this.requestService.loopRequests(guildId, numMode).subscribe({
+        error: (error) => console.error('Error occurred:', error)
+      });
+    }
+    if (mode === "queue") {
+      let numMode = 2;
+      this.requestService.loopRequests(guildId, numMode).subscribe({
+        error: (error) => console.error('Error occurred:', error)
+      });
+    }
+   
+  }
 
 }

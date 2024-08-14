@@ -5,10 +5,10 @@
       <iframe class="embed-responsive-item w-100 h-100 " [src]="currentlyPlayingUrl | safe"> frameborder="0" allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     <div class="controls ">
-        <app-skip class="control-icon" (action)="skipRequest()"></app-skip>
-        <img class="control-icon" src="assets/loop.png" alt="loop">  
-        <input type="range" class="form-range volume-control" min="0" max="100" alt="volume">
-      </div>
+      <app-skip class="control-icon" (action)="skipRequest()"></app-skip>
+      <app-loop class="control-icon" (action)="loop($event)" [selected]="guild.loopMode"></app-loop>
+      <input type="range" class="form-range volume-control" min="0" max="100" alt="volume">
+    </div>
   </div>
 
   <app-playlist [playlist]="playlist"></app-playlist>
