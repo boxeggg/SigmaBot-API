@@ -10,4 +10,5 @@ import { Requests } from '../../interfaces/RequestInterface';
 export class PlaylistComponent {
   @Input() playlist: Requests[];
 
+
 }

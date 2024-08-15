@@ -4,7 +4,7 @@ export interface Requests {
   url: string;
   user: string;
   thumbnail_Url: string
-  dateTime: string
+  dateTime: Date;
   guildId: string
   
 }

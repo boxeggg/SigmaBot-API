@@ -37,7 +37,7 @@ export class DashboardComponent {
   skipRequest() {
     let guildId = this.guild.guildId;
     this.requestService.skipRequest(guildId).subscribe({
-      complete: () => setTimeout(() => this.loadData(), 2000),
+      complete: () => setTimeout(() => this.loadData(), 3000),
       error: (error) => console.error('Error occurred:', error)
     });
 
